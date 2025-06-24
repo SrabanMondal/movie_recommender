@@ -108,7 +108,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         headers=["Title", "Plot", "Genres (comma-separated)", "Status"],
         components=[gr.Textbox(), gr.Textbox(), gr.Textbox(), gr.Textbox()],
         label="Movie Details",
-        samples=empty_df,  # Start with an empty table
+        samples=empty_df.values.to_list(),  # Start with an empty table
         type="pandas" # It will give us a pandas DataFrame in the backend
     )
 
