@@ -102,13 +102,12 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         search_btn = gr.Button("🔍 Search & Add Movies", scale=1)
 
     gr.Markdown("### Your Watched Movies (Edit plots or genres if needed)")
-
+    empty_df = pd.DataFrame(columns=["Title", "Plot", "Genres (comma-separated)", "Status"])
     # gr.Dataset is the perfect tool for this!
     movie_dataset = gr.Dataset(
         headers=["Title", "Plot", "Genres (comma-separated)", "Status"],
-        datatype=["str", "str", "str", "str"],
         label="Movie Details",
-        samples=None,  # Start with an empty table
+        samples=empty_df,  # Start with an empty table
         type="pandas" # It will give us a pandas DataFrame in the backend
     )
 
