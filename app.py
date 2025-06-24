@@ -112,10 +112,10 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         type="pandas" # It will give us a pandas DataFrame in the backend
     )
 
-    def update_movie_list(current_df, movie_input_str):
+    def update_movie_list(current_data, movie_input_str):
         # Agar user ne kuch type nahi kiya to kuch mat karo
         if not movie_input_str:
-            return current_df
+            return current_data
             
         names = [m.strip() for m in movie_input_str.split(",") if m.strip()]
         
@@ -124,12 +124,13 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         new_df = pd.DataFrame(search_results_list, columns=["Title", "Plot", "Genres (comma-separated)", "Status"])
 
         # Purane aur naye data ko merge karo
-        if current_df is not None and not current_df.empty:
-            # Drop duplicates, keeping the newly searched ones
-            combined_df = pd.concat([current_df, new_df]).drop_duplicates(subset=['Title'], keep='last')
-            return combined_df.values.tolist()
+        if current_data and isinstance(current_data, list) and len(current_data) > 0:
+            old_df = pd.DataFrame(current_data, columns=["Title", "Plot", "Genres (comma-separated)", "Status"])
+            combined_df = pd.concat([old_df, new_df], ignore_index=True).drop_duplicates(subset=["Title"], keep="last")
         else:
-            return new_df.values.tolist()
+            combined_df = new_df
+
+        return combined_df.values.tolist()
 
     # Button click pe dataset update hoga
     search_btn.click(
