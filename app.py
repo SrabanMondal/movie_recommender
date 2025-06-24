@@ -127,9 +127,9 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
         if current_df is not None and not current_df.empty:
             # Drop duplicates, keeping the newly searched ones
             combined_df = pd.concat([current_df, new_df]).drop_duplicates(subset=['Title'], keep='last')
-            return combined_df
+            return combined_df.values.tolist()
         else:
-            return new_df
+            return new_df.values.tolist()
 
     # Button click pe dataset update hoga
     search_btn.click(
