@@ -11,9 +11,9 @@ plot_genre_model = SentenceTransformer("all-MiniLM-L6-v2")
 topic_model = SentenceTransformer("BAAI/bge-base-en-v1.5")
 
 # Load embeddings and metadata
-plot_embeddings = np.load('data/plot_embeddings.npz', mmap_mode='r')['arr_0']
-genre_embeddings = np.load('data/genre_embeddings.npz', mmap_mode='r')['arr_0']
-topic_embeddings = np.load('data/topic_embeddings.npz', mmap_mode='r')['arr_0']
+plot_embeddings = np.load('data/plot_embeddings.npy', mmap_mode='r')
+genre_embeddings = np.load('data/genre_embeddings.npy', mmap_mode='r')
+topic_embeddings = np.load('data/topic_embeddings.npy', mmap_mode='r')
 metadata = pd.read_parquet("data/movie_metadata.parquet")
 udf = pd.read_parquet("data/user_metadata.parquet")
 
