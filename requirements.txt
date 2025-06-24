@@ -1,0 +1,8 @@
+gradio
+numpy
+pandas
+python-dotenv
+huggingface_hub
+faiss-cpu
+scikit-learn
+sentence-transformers
