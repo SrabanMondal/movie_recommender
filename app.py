@@ -152,9 +152,14 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
 
     output_box = gr.Textbox(label="Recommended Movies", lines=15, interactive=False)
 
-    def collect_and_recommend(movie_df, do_content, do_user, lang, k):
-        if movie_df is None or movie_df.empty:
+    def collect_and_recommend(movie_data, do_content, do_user, lang, k):
+        if not movie_data or len(movie_data) == 0:
             return "Please add at least one movie to get recommendations."
+
+        movie_df = pd.DataFrame(
+        movie_data,
+        columns=["Title", "Plot", "Genres (comma-separated)", "Status"]
+        )   
 
         # DataFrame se data ko list of dictionaries mein convert karo
         movies_data = []
