@@ -28,7 +28,7 @@ local_dir = snapshot_download(
 print("Downloaded to:", local_dir)
 from utils.recommend import recommend, recommend_from_users
 metadata = pd.read_parquet(local_dir+"/movie_metadata.parquet")
-metadata['genres'] = metadata['genres'].apply(ast.literal_eval)
+#metadata['genres'] = metadata['genres'].apply(ast.literal_eval)
 unique_languages = sorted(metadata['lan'].dropna().unique().tolist())
 genre_set = sorted(set(g.lower().strip() for sublist in metadata['genres'] if isinstance(sublist, list) for g in sublist))
 
