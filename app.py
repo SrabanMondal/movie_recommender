@@ -1,6 +1,6 @@
 import gradio as gr
 import pandas as pd
-from utils.recommend import recommend, recommend_from_users
+
 from dotenv import load_dotenv
 from huggingface_hub import snapshot_download
 import os
@@ -26,6 +26,7 @@ local_dir = snapshot_download(
     local_dir_use_symlinks=False    
 )
 print("Downloaded to:", local_dir)
+from utils.recommend import recommend, recommend_from_users
 metadata = pd.read_parquet("data/movie_metadata.parquet")
 metadata['genres'] = metadata['genres'].apply(ast.literal_eval)
 unique_languages = sorted(metadata['lan'].dropna().unique().tolist())
