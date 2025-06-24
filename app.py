@@ -17,7 +17,7 @@ if hf_token is None:
 repo_id = "srabanmondal/moviedata"
 parent_dir = os.path.dirname(os.path.dirname(__file__))
 data_dir = os.path.join(parent_dir, "data")
- 
+os.mkdir(data_dir)
 local_dir = snapshot_download(
     repo_id=repo_id,
     repo_type="dataset",            
