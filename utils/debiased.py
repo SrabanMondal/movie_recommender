@@ -1,7 +1,7 @@
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-def get_unbiased_genre_embedding(genres,model , similarity_threshold=0.75):
+def get_unbiased_genre_embedding(genres, model, similarity_threshold=0.75):
     if not genres:
         return np.zeros(model.get_sentence_embedding_dimension())
 

@@ -74,7 +74,7 @@ def recommend(
         return []
     # 5. Average all user embeddings
     plot_avg = np.mean(user_plot_vecs, axis=0)
-    genre_avg = get_unbiased_genre_embedding(user_all_genres)
+    genre_avg = get_unbiased_genre_embedding(user_all_genres, plot_genre_model)
     topic_avg = np.mean(user_topic_vecs, axis=0)
 
     # 6. Final combined embedding (1536)
@@ -142,7 +142,7 @@ def recommend_from_users(
         return []
 
     plot_avg = np.mean(user_plot_vecs, axis=0)
-    genre_avg = get_unbiased_genre_embedding(user_all_genres)
+    genre_avg = get_unbiased_genre_embedding(user_all_genres, plot_genre_model)
     topic_avg = np.mean(user_topic_vecs, axis=0)
 
     user_combined = np.concatenate([plot_avg, genre_avg, topic_avg])
