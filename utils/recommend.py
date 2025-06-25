@@ -106,8 +106,11 @@ def recommend(
     watched_titles = set([t.lower() for t in movie_names])
     result = result[~result["title"].str.lower().isin(watched_titles)]
     result = result.sort_values("final_score", ascending=False).head(top_k)
+    result = result[["title", "genres", "final_score"]]
+    result["genres"] = result["genres"].apply(lambda x: ", ".join(map(str, x)) if isinstance(x, (list, np.ndarray)) else str(x))
+    result["final_score"] = result["final_score"].astype(float).round(2)
 
-    return result[["title", "genres", "final_score"]]
+    return result
 
 # Collaborative filtering
 
@@ -191,5 +194,7 @@ def recommend_from_users(
 
     # 🔽 Sort and return top_k
     result = result.sort_values("final_score", ascending=False).head(top_k_movies)
-
-    return result[["title", "genres","final_score"]]
+    result = result[["title", "genres","final_score"]]
+    result["genres"] = result["genres"].apply(lambda x: ", ".join(map(str, x)) if isinstance(x, (list, np.ndarray)) else str(x))
+    result["final_score"] = result["final_score"].astype(float).round(2)
+    return result
