@@ -107,7 +107,7 @@ def recommend(
     result = result[~result["title"].str.lower().isin(watched_titles)]
     result = result.sort_values("final_score", ascending=False).head(top_k)
 
-    return result[["title", "genres", "final_score"]].to_dict(orient="records")
+    return result[["title", "genres", "final_score"]]
 
 # Collaborative filtering
 
@@ -192,4 +192,4 @@ def recommend_from_users(
     # 🔽 Sort and return top_k
     result = result.sort_values("final_score", ascending=False).head(top_k_movies)
 
-    return result[["title", "genres","final_score"]].to_dict(orient="records")
+    return result[["title", "genres","final_score"]]
