@@ -108,7 +108,7 @@ def recommend(
     result = result.sort_values("final_score", ascending=False).head(top_k)
     result = result[["title", "genres", "final_score"]]
     result["genres"] = result["genres"].apply(lambda x: ", ".join(map(str, x)) if isinstance(x, (list, np.ndarray)) else str(x))
-    result["final_score"] = result["final_score"].astype(float).round(2)
+    result["final_score"] = result["final_score"].astype(float).round(2)*10
 
     return result
 
