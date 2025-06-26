@@ -35,7 +35,7 @@ This project provides smart movie recommendations using both **content-based fil
 - Deep semantic understanding of **plots**, **genre tags**, and **topics** using **BERT-based embeddings**.
 - Powerful **FAISS-based nearest neighbor** search for lightning-fast similarity matching across 200K+ movies.
 - **User-behavior-based recommendations** using collaborative filtering from actual user preferences.
-- Optimized and memory-efficient pipelines using `mmap`, `.npz`, and FAISS indexing.
+- Optimized and memory-efficient pipelines using `mmap`, and FAISS indexing.
 - Fully interactive **Gradio UI** with:
   - Dynamic movie entry system
   - Auto-fetch plot/genres for known titles
@@ -60,7 +60,7 @@ This project provides smart movie recommendations using both **content-based fil
 
 - Preprocessing included:
   - Genre tag normalization (case/space insensitive)
-  - Topic modeling with BERTopic for deep thematic similarity
+  - Topic modeling with BGE model for richer themes.
   - Genre de-biasing to reduce over-representation of common tags
   - Collaborative filtering user profile generation from favorite movies
 
